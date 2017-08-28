@@ -20,15 +20,15 @@ import java.util.Map;
 
 @SpringBootApplication
 @EnableKafka
-public class EventasiaKafkaConfig {
+public class EventasiaKafkaProbeConfig {
 
     @Value("${eventasia.kafka.broker-list}")
     private String brokerList;
 
-    @Value("${eventasia.kafka.topic}")
+    @Value("${eventasia.kafka.probe.topic}")
     private String defaultTopic;
 
-    @Value("${eventasia.kafka.application-group}")
+    @Value("${eventasia.kafka.probe.application-group}")
     private String applicationGroup;
 
     @Value("${eventasia.kafka.retries-config}")
@@ -58,7 +58,7 @@ public class EventasiaKafkaConfig {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, getBrokerList());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, getApplicationGroup());
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "15000");
+        props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "30000");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, IntegerDeserializer.class);
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return props;

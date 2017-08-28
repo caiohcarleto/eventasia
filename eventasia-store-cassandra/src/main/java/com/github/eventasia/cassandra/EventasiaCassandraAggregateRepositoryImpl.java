@@ -15,7 +15,6 @@ public class EventasiaCassandraAggregateRepositoryImpl<A extends Aggregate> impl
     // TODO add id to keep all versions of aggregate
     @Override
     public A get(UUID uuid) {
-
         return (A) eventasiaCassandraConfig.getMapper().get(uuid);
     }
 
